@@ -1,0 +1,63 @@
+<app-content>
+    <h1 class="text-2xl text-black py-3 md:text-3xl">Disable employee account</h1>
+    <hr>
+
+    <h2 class="text-xl text-black my-2">Select a user</h2>
+    <section class="flex mx-auto md:ml-auto md:mr-0 text-gray-500 my-4">
+
+        <div class="overflow-auto">
+            <table class="table table-compact w-full">
+                <thead>
+                    <tr class="text-center">
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees"
+                        class="text-slate-300 text-center hover:text-secondary transition cursor-pointer">
+                        <td class="hover:bg-slate-900" (click)="clickedUser(employee)">{{ employee.name }}</td>
+                        <td>{{ employee.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section *ngIf="userSelected">
+        <div class="row">
+            <h3 class="text-black text-xl pt-4">Are you sure you want to disable the account of this user?</h3>
+            <div class="row flex flex-shrink-1">
+                <div
+                    class="flex flex-col bg-cgi-red w-96 md:mx-0 px-4 py-8 rounded-lg md:shadow-xl mt-4">
+                    <h3 class="font-extrabold text-2xl text-white text-center mb-2">You selected this user</h3>
+                    <p class="italic text-center text-white font-semibold">
+                        User: {{ current_user.name }}</p>
+                    <p class="italic text-center text-white font-semibold">Email: {{ current_user.email }}</p>
+                </div>
+            </div>
+            <button class="w-64 m-6 ml-0 mr-6 bg-green-600 hover:bg-blue-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded"
+                    (click)="onDisable()">Disable account</button>
+            <button class="w-64 md:m-6 bg-red-600 hover:bg-blue-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded"
+                    (click)="onCancel()">Cancel</button>
+        </div>
+    </section>
+
+    <section *ngIf="showSucces === false">
+        <div class="row">
+            <div class="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700 mb-3 mt-10"
+                 role="alert">
+                This account can't be disabled
+            </div>
+        </div>
+    </section>
+
+    <section *ngIf="showSucces === true">
+        <div class="row">
+            <div class="bg-green-300 rounded-lg py-5 px-6 mb-4 text-base text-green-700 mb-3 mt-10"
+                 role="success">
+                Account has been disabled
+            </div>
+        </div>
+    </section>
+</app-content>

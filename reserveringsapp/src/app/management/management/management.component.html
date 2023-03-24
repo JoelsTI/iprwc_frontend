@@ -1,0 +1,14 @@
+<app-content>
+    <h1 class="text-3xl text-black py-3 md:text-3xl min-[320px]:text-xl">Welcome to the admin page!</h1>
+
+    <div class="max-w-xs flex flex-col shadow-sm">
+        <button class="py-3 px-4 inline-flex justify-center items-center gap-2 border font-medium bg-cyan-500 text-white hover:bg-cyan-700"
+                *ngFor="let option of adminOptions"
+                (click)="loadSelectedOption(option)">
+            {{ option }}
+        </button>
+    </div>
+
+
+</app-content>
+

@@ -1,0 +1,75 @@
+<header class="flex w-full bg-red-800">
+    <!-- Desktop navigation -->
+    <section class="hidden md:flex mx-auto py-4 px-4 container">
+
+        <nav class="flex flex-wrap flex-grow justify-end my-auto">
+            <a
+                *ngFor="let navItem of navItems; let i = index"
+                routerLink="{{ navItem.path }}"
+                class="ml-4 font-bold text-white hover:text-secondary transition"
+            >{{ navItem.display }}</a>
+        </nav>
+
+        <section class="shrink-0 pl-4 my-auto text-white transition cursor-pointer hover:text-secondary dropdown dropdown-end">
+            <label tabindex="0" class="m-1" [textContent]="currentUser.username"></label>
+            <i class="fa-solid fa-caret-down ml-2 mt-1"></i>
+            <ul *ngIf="isLoggedIn" tabindex="0" class="dropdown-content menu p-2 hover: text-white shadow rounded-md bg-gray-800 w-52">
+                <li><a class="hover:text-white break-all">{{ currentUser.email }}</a></li>
+                <li><a class="hover:text-white" (click)="logout()">Logout</a></li>
+            </ul>
+            <ul *ngIf="!isLoggedIn" tabindex="0" class="dropdown-content menu p-2 hover: text-white shadow rounded-md bg-gray-800 w-52">
+                <li><a class="hover:text-white" (click)="login()">Login</a></li>
+            </ul>
+        </section>
+    </section>
+    <!-- /Desktop navigation -->
+
+    <!-- Mobile navigation -->
+    <section class="flex md:hidden mx-auto py-4 px-4 container">
+
+        <i
+            (click)="isExpanded = true"
+            class="fa-solid fa-bars ml-auto my-auto text-white hover:text-secondary transition cursor-pointer"
+        ></i>
+
+        <section *ngIf="isExpanded" class="fixed h-screen w-screen top-0 left-0 z-50 overflow-scroll bg-black">
+            <section class="flex mx-auto py-4 px-4 container">
+
+                <i
+                    (click)="isExpanded = false"
+                    class="fa-solid fa-xmark ml-auto my-auto text-white hover:text-secondary transition cursor-pointer"
+                ></i>
+            </section>
+
+            <nav class="flex flex-col w-full mt-2">
+                <a
+                    *ngFor="let navItem of navItems; let i = index"
+                    routerLink="{{ navItem.path }}"
+                    (click)="isExpanded = !isExpanded"
+                    class="flex px-4 py-2 font-bold text-white transition hover:bg-secondary transition"
+                >
+                    {{ navItem.display }}
+                    <i class="fa-solid fa-arrow-right ml-auto my-auto"></i>
+                </a>
+            </nav>
+
+            <section class="flex flex-col px-4 mt-6">
+                <div class="border-t border-white w-full"></div>
+                <section class="flex w-full mt-4">
+                    <i class="fa-solid fa-user text-4xl text-white shrink-0 mr-4 my-auto"></i>
+                    <section *ngIf="isLoggedIn" class="flex flex-col flex-grow">
+                        <h1 class="text-xl text-white font-bold">{{ currentUser.username }}</h1>
+                        <h2 class="text-md text-white">{{ currentUser.email }}</h2>
+                    </section>
+                </section>
+                    <p *ngIf="isLoggedIn" (click)="logout()" class="flex py-2 font-bold cursor-pointer text-white transition hover:bg-secondary transition">
+                    Logout
+                </p>
+                <p *ngIf="!isLoggedIn" (click)="login()" class="flex py-2 font-bold cursor-pointer text-white transition hover:bg-secondary transition">
+                    login
+                </p>
+            </section>
+        </section>
+    </section>
+    <!-- /Mobile navigation -->
+</header>

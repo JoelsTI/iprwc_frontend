@@ -1,0 +1,27 @@
+<app-content>
+    <section class="flex flex-col md:flex-row w-full mb-16">
+        <div class="flex-grow shrink-0 w-full md:w-3/5">
+            <h1 class="text-black text-3xl font-semibold mb-2">Welcome {{ currentUser.username }}!</h1>
+            <p class="text-black">
+                Welcome to the Webshop!<br/>
+                The product page is accessible via the menu bar.  Check it out to make a purchase!<br/>
+                This Webshop will mostly contain merchandise items from various sources, so stay on the look out for that!
+
+            </p>
+        </div>
+
+        <div class="flex-grow shrink-0 w-full md:w-2/5 mt-8 md:mt-0 shadow-lg">
+            <img src="/assets/images/Landschap.jpg" alt="" class="max-w-full max-h-full rounded-md">
+        </div>
+    </section>
+
+    <section class="flex flex-col bg-orange-300 w-screen md:w-full -mx-4 md:mx-0 px-4 py-12 md:rounded-lg md:shadow-xl">
+        <h2 class="text-2xl font-bold text-black text-center font-black mb-2">Are you ready to make your big purchase?!</h2>
+        <p class="text-center text-black font-semibold">Making a purchase is quite easy, click the button below to start!</p>
+
+        <button class="bg-black text-white font-semibold rounded-md px-4 py-2 mx-auto mt-6"
+                (click)="loadProduct()">>
+            Get started
+        </button>
+    </section>
+</app-content>

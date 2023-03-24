@@ -1,0 +1,26 @@
+<footer class="flex w-full bg-blue-900 py-8">
+    <section class="flex flex-col-reverse md:flex-row mx-auto py-4 px-4 container">
+        <section class="flex flex-col max-w-[280px]">
+
+            <h2 class="text-lg font-bold text-white mb-2">About The Netherlands</h2>
+            <h3 class="text-white mb-2">
+                The Netherlands, a country in northwestern Europe, is known for a flat landscape of canals, tulip fields, windmills and cycling routes. Amsterdam, the capital, is home to the Rijksmuseum, Van Gogh Museum and the house where Jewish diarist Anne Frank hid during WWII. Canalside mansions and a trove of works from artists including Rembrandt and Vermeer remain from the city's 17th-century "Golden Age."
+            </h3>
+        </section>
+        <nav class="flex flex-wrap flex-col md:flex-row flex-grow justify-end">
+            <section
+                *ngFor="let navCategoryItem of navCategories; let i = index"
+                class="flex flex-col mb-8 md:mb-0 md:ml-12 min-w-[100px]"
+            >
+                <h2 class="text-xl text-white font-bold mb-4">{{ navCategoryItem.display }}</h2>
+                <a
+                    *ngFor="let navItem of navCategoryItem.items; let i = index"
+                    href="{{ navItem.url }}"
+                    target="_blank"
+                    title="{{ navItem.display }}"
+                    class="font-semibold text-white hover:text-secondary transition mb-2"
+                >{{ navItem.display }}</a>
+            </section>
+        </nav>
+    </section>
+</footer>
